@@ -1,0 +1,20 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - namespace.yaml
+  - configmap.yaml
+  - data-pvc.yaml
+  - postgres.yaml
+  - redis.yaml
+  - elasticsearch.yaml
+  - api.yaml
+  - worker.yaml
+  - beat.yaml
+  - seed-job.yaml
+  - ingress.yaml
+
+images:
+  - name: threatlens-api
+    newName: threatlens-api
+    newTag: local

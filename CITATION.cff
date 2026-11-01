@@ -1,0 +1,11 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it using the metadata below."
+title: "Sentinova ThreatLens"
+type: software
+authors:
+  - family-names: "Londhe"
+    given-names: "Rigved"
+version: 1.0.0
+date-released: 2026-11-01
+repository-code: "https://github.com/Rugved-24/sentinova-threatlens"
+license: "NOASSERTION"

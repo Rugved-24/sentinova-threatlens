@@ -1,0 +1,50 @@
+# Secrets and local state
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+*.crt
+*.dump
+*.sql
+.aws/
+credentials
+secrets/
+data/*.db
+data/*.db-wal
+data/*.db-shm
+data/reports/*
+data/.dev_secret
+data/.runtime/
+*.log
+
+# Python
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+*.egg-info/
+
+# Frontend
+frontend/node_modules/
+frontend/dist/
+frontend/.vite/
+*.tsbuildinfo
+
+# OS / editors
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Word lock files
+~$*.docx
+
+# Local TLS material
+deploy/certs/*
+!deploy/certs/.gitkeep

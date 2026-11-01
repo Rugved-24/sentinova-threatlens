@@ -1,0 +1,25 @@
+[tool.ruff]
+line-length = 120
+target-version = "py311"
+exclude = [".venv", "frontend", "data"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "S", "C4", "SIM"]
+ignore = ["S101", "S105", "S106", "B008"]
+
+[tool.ruff.lint.per-file-ignores]
+"backend/tests/*" = ["S105", "S106", "S311"]
+"backend/app/demo.py" = ["S311"]
+
+[tool.pytest.ini_options]
+testpaths = ["backend/tests"]
+pythonpath = ["backend"]
+filterwarnings = ["ignore::DeprecationWarning"]
+
+[tool.coverage.run]
+source = ["backend/app"]
+omit = ["backend/app/seed.py", "backend/app/feeds.py", "backend/app/enrichment.py"]
+
+[tool.bandit]
+exclude_dirs = ["frontend", ".venv", "backend/tests", "data"]
+skips = ["B105", "B311", "B406"]

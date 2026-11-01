@@ -1,0 +1,49 @@
+﻿apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: beat
+  namespace: threatlens
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: beat
+  template:
+    metadata:
+      labels:
+        app: beat
+    spec:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 10001
+        runAsGroup: 10001
+        seccompProfile:
+          type: RuntimeDefault
+      containers:
+        - name: beat
+          image: threatlens-api:local
+          imagePullPolicy: IfNotPresent
+          workingDir: /app/backend
+          command: ["celery", "-A", "app.celery_app.celery", "beat", "--loglevel=INFO", "--schedule=/tmp/celerybeat-schedule"]
+          envFrom:
+            - configMapRef:
+                name: threatlens-config
+            - secretRef:
+                name: threatlens-secrets
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop: ["ALL"]
+          resources:
+            requests:
+              cpu: 50m
+              memory: 64Mi
+            limits:
+              cpu: 250m
+              memory: 256Mi
+          volumeMounts:
+            - name: schedule
+              mountPath: /tmp
+      volumes:
+        - name: schedule
+          emptyDir: {}

@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: threatlens-config
+  namespace: threatlens
+data:
+  APP_ENV: production
+  DEMO_MODE: "false"
+  COOKIE_SECURE: "true"
+  REDIS_URL: redis://redis:6379/0
+  ELASTICSEARCH_URL: http://elasticsearch:9200
+  CELERY_BROKER_URL: redis://redis:6379/1
+  CELERY_RESULT_BACKEND: redis://redis:6379/2
+  RUN_SCHEDULER: "false"
+  RETENTION_DAYS: "365"
+  NOTIFICATION_RETENTION_DAYS: "90"
+  CORS_ORIGINS: https://threatlens.example.com
+  LOG_LEVEL: INFO

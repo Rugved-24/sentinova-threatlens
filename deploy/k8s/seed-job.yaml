@@ -1,0 +1,43 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: threatlens-seed
+  namespace: threatlens
+spec:
+  backoffLimit: 10
+  ttlSecondsAfterFinished: 3600
+  template:
+    metadata:
+      labels:
+        app: threatlens-seed
+    spec:
+      restartPolicy: OnFailure
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 10001
+        runAsGroup: 10001
+        fsGroup: 10001
+        seccompProfile:
+          type: RuntimeDefault
+      containers:
+        - name: seed
+          image: threatlens-api:local
+          imagePullPolicy: IfNotPresent
+          workingDir: /app/backend
+          command: ["python", "-c", "from app.seed import seed_database; print(seed_database())"]
+          envFrom:
+            - configMapRef:
+                name: threatlens-config
+            - secretRef:
+                name: threatlens-secrets
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop: ["ALL"]
+          volumeMounts:
+            - name: data
+              mountPath: /app/data
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: threatlens-data

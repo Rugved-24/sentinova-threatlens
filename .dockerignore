@@ -1,0 +1,17 @@
+.venv
+.git
+.github
+data/*
+!data/attack_techniques.json
+docs
+frontend/node_modules
+frontend/dist
+frontend/e2e
+**/__pycache__
+**/*.pyc
+.pytest_cache
+.ruff_cache
+.coverage
+.env
+deploy/certs
+*.log
