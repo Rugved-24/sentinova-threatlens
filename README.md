@@ -1,5 +1,7 @@
 # Sentinova ThreatLens
 
+[![CI](https://github.com/Rugved-24/sentinova-threatlens/actions/workflows/ci.yml/badge.svg)](https://github.com/Rugved-24/sentinova-threatlens/actions/workflows/ci.yml)
+
 ThreatLens is an evidence-first cyber threat intelligence platform that turns fragmented threat data into an auditable SOC workflow. It unifies indicator ingestion, normalization, risk scoring, correlation, ATT&CK-aligned hunting, incident response and executive reporting in one secure, deployable stack.
 
 ## Why ThreatLens stands out
@@ -151,4 +153,8 @@ The embedded single-node profile uses SQLite with WAL and FTS5. The production-p
 - `CLOUD_DEPLOYMENT_EVIDENCE.md` for the sanitized AWS staging acceptance record.
 - `docs/EVIDENCE_SUMMARY.md` for concise public verification evidence.
 - `docs/PRD_COMPLIANCE.md` for implemented scope and remaining non-functional validation.
+
+## Author
+
+Designed and developed by [Rigved Londhe](https://github.com/Rugved-24).
 
